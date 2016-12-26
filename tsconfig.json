@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "outDir": "./tsoutput",
+    "sourceMap": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true
+  },
+  "exclude": [
+    "node_modules",
+    "tsoutput",
+    ".tmp",
+    "docs"
+  ]
+}
