@@ -1,8 +1,16 @@
 {
+  "extends": ["tslint:latest", "tslint-react"],
   "rulesDirectory": [
     "client/"
   ],
   "rules": {
+    "jsx-alignment": true,
+    "jsx-curly-spacing": [true, "never"],
+    "jsx-no-lambda": true,
+    "jsx-no-multiline-js": true,
+    "jsx-no-string-ref": true,
+    "jsx-self-close": true,
+    "jsx-wrap-multiline": true,
     "adjacent-overload-signatures": true,
     "align": [
       true,

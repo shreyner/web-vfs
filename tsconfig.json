@@ -3,7 +3,7 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "noImplicitAny": true,
     "jsx": "react",
     "experimentalDecorators": true,

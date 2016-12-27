@@ -23,7 +23,14 @@ module.exports = {
     ],
     module: {
         loaders: [
-            {test: /\.ts(x)?$/, loader: 'awesome-typescript-loader'}
+            {
+                test: /\.ts(x)?$/,
+                loader:"awesome-typescript-loader!tslint"
+            },
+            {
+                test: /\.less$/,
+                loader: "style!css-loader?modules&importLoaders=1&localIdentName=[path][local]___[hash:base64:5]!less-loader"
+            }
         ]
     },
     devServer: {
