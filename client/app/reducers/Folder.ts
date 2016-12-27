@@ -8,11 +8,25 @@ import {Action, handleActions} from "redux-actions";
 import {ADD_FOLDER} from "../constants/index";
 import {IFolder} from "../model/IFolder";
 
+let idFolder = 1;
+
+const initialStoreFolder: IFolder[] = [
+    {
+        id: 0,
+        name: "Root",
+        folderParent: 0,
+        folderChildren: [],
+        files: [],
+    },
+];
+
 export const folderReducer = handleActions<IFolder[]>({
     [ADD_FOLDER]: (store: IFolder[], action: Action<IFolder>): IFolder[] => {
         let newStore = clone(store);
+        let newFolder = action.payload;
+        newFolder.id = idFolder++;
 
-        newStore.push(action.payload);
+        newStore.push(newFolder);
         return newStore;
     },
-}, []);
+}, initialStoreFolder);

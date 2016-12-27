@@ -3,5 +3,9 @@
  */
 
 export interface IFolder {
+    id?: number;
     name: string;
+    folderChildren: number[];
+    folderParent: number;
+    files: number[];
 }

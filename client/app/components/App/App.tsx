@@ -12,7 +12,7 @@ import {IStore} from "../../model/IStore";
 import {MainContent} from "../MainContent/MainContent";
 
 export interface IAppDispatchProps {
-    addFolder?(name: string): void;
+    addFolder?(name: string, parentFolder: number): void;
 }
 
 export interface IAppStoreProps {}
@@ -30,16 +30,16 @@ export interface IAppProps extends IAppDispatchProps {
 
 @connect<IAppStoreProps, IAppDispatchProps, any>(mapStateToProps, mapDispatchProps)
 export class App extends React.Component<IAppProps, any> {
-    render() {
+    public render() {
         return (
             <div className="App">
                 <LeftBar />
                 <MainContent />
-                <button onClick={() => this.props.addFolder("folder1")}>add</button>
+                <button onClick={() => this.props.addFolder("folder", 0)}>add</button>
                 <ul>
                     {}
                 </ul>
             </div>
         );
     }
-};
+}

@@ -25,10 +25,9 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch(addFolder("Folder1"));
-store.dispatch(addFolder("Folder2"));
-store.dispatch(addFolder("Folder3"));
-
+store.dispatch(addFolder("Folder1", 0));
+store.dispatch(addFolder("Folder2", 0));
+store.dispatch(addFolder("Folder3", 0));
 
 render(
     <Provider store={store}>
