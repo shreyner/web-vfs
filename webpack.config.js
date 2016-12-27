@@ -2,7 +2,8 @@
  * Created by Alexander on 26.12.2016.
  */
 
-const webpack = require("webpack");
+const webpack = require("webpack"),
+    CheckerPlugin = require("awesome-typescript-loader").CheckerPlugin;
 
 module.exports = {
     devtool: "source-map",
@@ -17,7 +18,8 @@ module.exports = {
         devtoolModuleFilenameTemplate: "../[resource-path]"
     },
     plugins: [
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new CheckerPlugin()
     ],
     module: {
         loaders: [

@@ -10,7 +10,14 @@
     "outDir": "./tsoutput",
     "sourceMap": true,
     "declaration": false,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "react",
+      "react-dom"
+    ]
   },
   "exclude": [
     "node_modules",
