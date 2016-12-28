@@ -8,7 +8,7 @@ import {render} from "react-dom";
 import {Provider} from "react-redux";
 import {createStore, Store} from "redux";
 
-import {addFolder} from "./actions/index";
+import {addFolder, addFile} from "./actions/index";
 import {App} from "./components/App/App";
 import {IStore} from "./model/IStore";
 import reducer from "./reducers";
@@ -24,6 +24,8 @@ const store: Store<IStore> = createStore(
 store.dispatch(addFolder("Folder1", 0));
 store.dispatch(addFolder("Folder2", 0));
 store.dispatch(addFolder("Folder3", 0));
+
+store.dispatch(addFile("twoFile.txt", 0));
 
 render(
     <Provider store={store}>

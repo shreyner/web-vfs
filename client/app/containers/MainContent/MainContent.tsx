@@ -5,11 +5,12 @@ import * as React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
 
-import {addFolder} from "../../actions/index";
+import {addFolder, addFile} from "../../actions/index";
 import {IStore} from "../../model/IStore";
 
 export interface IMainContentDispatchToProps {
     addFolder?(name: string, parentFolder: number): void;
+    addFile?(name: string, parentFolder: number): void;
 }
 export interface IMainContentStoreToProps {
 }
@@ -22,6 +23,7 @@ export interface IMainContentStore {
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => ({
     addFolder: bindActionCreators(addFolder, dispatch),
+    addFile: bindActionCreators(addFile, dispatch)
 });
 const mapStoreToProps = (store: IStore) => ({});
 
@@ -34,7 +36,7 @@ export class MainContent extends React.Component<IMainContentProps, any> {
                     <div className="title">Пример</div>
                     <div className="description">3,5мб, 4 папки, 1 файл</div>
                     <button onClick={() => this.props.addFolder("folder1",1)}>Add Folder</button>
-                    <button>Add File</button>
+                    <button onClick={() => this.props.addFile("secondFile.txt", 1)}>Add File</button>
                 </div>
             </div>
         );

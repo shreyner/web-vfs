@@ -5,24 +5,32 @@
 import * as React from "react";
 import {find} from "lodash";
 import {TreeFolderModel} from "../../model/TreeFolder";
-import {TreeFileModel} from "../../model/TreeFiles";
+import {FileModel} from "../../model/TreeFiles";
 
 
 export interface ITreeListViewProps {
     folders: TreeFolderModel[];
-    files?: TreeFileModel[];
+    files: FileModel[];
 }
 
 export class TreeListView extends React.Component<ITreeListViewProps, any> {
 
-    private renderList(folder: TreeFolderModel, folders: TreeFolderModel[]): JSX.Element {
+    private renderFolderList(folder: TreeFolderModel, folders: TreeFolderModel[], files: FileModel[]): JSX.Element {
         return (
             <li key={folder.id}>
                 <span>{folder.name}</span>
                 <ul>
                     {folder.childrenFilder.map((itemIdFolder, indexFodler) => {
                         let nextFolder = find(folders, {id: itemIdFolder});
-                        return this.renderList(nextFolder, folders);
+                        return this.renderFolderList(nextFolder, folders, files);
+                    })}
+                    {files.map((itemFile, indexFile) => {
+                        if (itemFile.parentFolder === folder.id) {
+                            return (
+                                <li key={indexFile}>{itemFile.name}</li>
+                            );
+                        }
+                        return null;
                     })}
                 </ul>
             </li>
@@ -32,7 +40,7 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
     render() {
         return (
             <ul>
-                {this.renderList(this.props.folders[0], this.props.folders)}
+                {this.renderFolderList(this.props.folders[0], this.props.folders, this.props.files)}
             </ul>
         );
     }

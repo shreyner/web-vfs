@@ -4,17 +4,17 @@
 
 import {assign} from "lodash";
 
-export class TreeFileModel {
+export class FileModel {
 
-    public id: number;
+    public id?: number;
 
     public name: string;
 
-    public body: string;
+    public body?: string;
 
     public parentFolder: number;
 
-    constructor(source?: TreeFileModel) {
+    constructor(source?: FileModel) {
         if (source) {
             assign(this, source);
         }

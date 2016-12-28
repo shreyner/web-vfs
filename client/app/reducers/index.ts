@@ -8,6 +8,6 @@ import {filesReducer} from "./FilesReducer";
 import {folderReducer} from "./FolderReducer";
 
 export default combineReducers<IStore>({
-    // files: filesReducer,
+    files: filesReducer,
     folders: folderReducer,
 });
