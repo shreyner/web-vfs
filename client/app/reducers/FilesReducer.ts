@@ -6,7 +6,7 @@ import {Action, handleActions} from "redux-actions";
 import {clone} from "lodash";
 
 import {ADD_FILE} from "../constants/index";
-import {FileModel} from "../model/TreeFiles";
+import {FileModel} from "../model/FileModel";
 
 let idFile = 1;
 
@@ -19,7 +19,7 @@ const initialStoreFolder: FileModel[] = [
     })
 ];
 
-export const filesReducer = handleActions<any>({
+export const filesReducer = handleActions<FileModel[]>({
     [ADD_FILE]: (store: FileModel[], action: Action<FileModel>) => {
         let newStore = clone(store);
         let newFile = action.payload;

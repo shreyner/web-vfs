@@ -4,7 +4,7 @@
 
 import {assign} from "lodash";
 
-export class TreeFolderModel {
+export class FolderModel {
 
     public id?: number;
 
@@ -16,7 +16,7 @@ export class TreeFolderModel {
 
     public files: number[];
 
-    constructor(source?: TreeFolderModel) {
+    constructor(source?: FolderModel) {
         if (source) {
             assign(this, source);
         }

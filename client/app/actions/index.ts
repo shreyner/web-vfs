@@ -3,13 +3,14 @@
  */
 
 import {createAction} from "redux-actions";
-import {ADD_FOLDER, ADD_FILE} from "../constants/index";
-import {TreeFolderModel} from "../model/TreeFolder";
-import {FileModel} from "../model/TreeFiles";
+import {ADD_FOLDER, ADD_FILE, SELECT_ITEM} from "../constants/index";
+import {FolderModel} from "../model/FolderModel";
+import {FileModel} from "../model/FileModel";
+import {ISelected} from "../model/Selected";
 
-export const addFolder = createAction<TreeFolderModel, string, number>(
+export const addFolder = createAction<FolderModel, string, number>(
     ADD_FOLDER,
-    (name: string, folderParent: number) => (new TreeFolderModel({
+    (name: string, folderParent: number) => (new FolderModel({
         name: name,
         childrenFilder: [],
         parentFolder: folderParent,
@@ -25,3 +26,5 @@ export const addFile = createAction<FileModel, string, number>(
         parentFolder: parendFolder
     })),
 );
+
+export const selectItem = createAction<ISelected>(SELECT_ITEM);
