@@ -11,19 +11,15 @@ import {createStore, Store} from "redux";
 import {addFolder} from "./actions/index";
 import {App} from "./components/App/App";
 import {IStore} from "./model/IStore";
-import {folderReducer} from "./reducers/Folder";
+import reducer from "./reducers";
 
 const store: Store<IStore> = createStore(
-    folderReducer,
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    reducer,
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
 );
-
-
-console.log(store.getState());
-
-store.subscribe(() => {
-    console.log(store.getState());
-});
+// store.subscribe(() => {
+//     console.log(store.getState());
+// });
 
 store.dispatch(addFolder("Folder1", 0));
 store.dispatch(addFolder("Folder2", 0));

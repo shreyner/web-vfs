@@ -4,14 +4,14 @@
 
 import {createAction} from "redux-actions";
 import {ADD_FOLDER} from "../constants/index";
-import {IFolder} from "../model/IFolder";
+import {TreeFolderModel} from "../model/TreeFolder";
 
-export const addFolder = createAction<IFolder, string, number>(
+export const addFolder = createAction<TreeFolderModel, string, number>(
     ADD_FOLDER,
-    (name: string, folderParent: number) => ({
+    (name: string, folderParent: number) => (new TreeFolderModel({
         name: name,
-        folderChildren: [],
-        folderParent: folderParent,
+        childrenFilder: [],
+        parentFolder: folderParent,
         files: [],
-    })
+    })),
 );

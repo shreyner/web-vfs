@@ -2,8 +2,10 @@
  * Created by Alexander on 27.12.2016.
  */
 
-import {IFolder} from "./IFolder";
+import {TreeFileModel} from "./TreeFiles";
+import {TreeFolderModel} from "./TreeFolder";
 
 export interface IStore {
-    folder: IFolder[];
+    folders: TreeFolderModel[];
+    files: TreeFileModel[];
 }

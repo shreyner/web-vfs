@@ -4,8 +4,10 @@
 
 import {combineReducers} from "redux";
 import {IStore} from "../model/IStore";
-import {folderReducer} from "./Folder";
+import {filesReducer} from "./FilesReducer";
+import {folderReducer} from "./FolderReducer";
 
 export default combineReducers<IStore>({
-    folder: folderReducer,
+    // files: filesReducer,
+    folders: folderReducer,
 });
