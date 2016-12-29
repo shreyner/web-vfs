@@ -6,7 +6,7 @@ import {Action, handleActions} from "redux-actions";
 import {SELECT_ITEM} from "../constants/index";
 import {ISelected, TypeSelect} from "../model/Selected";
 
-const initialStoreSelected: ISelected = {id: 0, type: TypeSelect.Folder};
+const initialStoreSelected: ISelected = {id: 0, folderId: 0, type: TypeSelect.Folder};
 
 export const selectedReducer = handleActions<ISelected>({
     [SELECT_ITEM]: (store: ISelected, action: Action<ISelected>) => {

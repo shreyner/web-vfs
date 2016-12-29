@@ -4,6 +4,7 @@
 
 export interface ISelected {
     id: number;
+    folderId: number;
     type: TypeSelect;
 }
 

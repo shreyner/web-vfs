@@ -1,12 +1,11 @@
 /**
  * Created by Alexander on 27.12.2016.
  */
-
 import {createAction} from "redux-actions";
 import {ADD_FOLDER, ADD_FILE, SELECT_ITEM} from "../constants/index";
 import {FolderModel} from "../model/FolderModel";
 import {FileModel} from "../model/FileModel";
-import {ISelected} from "../model/Selected";
+import {ISelected, TypeSelect} from "../model/Selected";
 
 export const addFolder = createAction<FolderModel, string, number>(
     ADD_FOLDER,
@@ -27,4 +26,7 @@ export const addFile = createAction<FileModel, string, number>(
     })),
 );
 
-export const selectItem = createAction<ISelected>(SELECT_ITEM);
+export const selectItem = createAction<ISelected, number, number, TypeSelect>(
+    SELECT_ITEM,
+    (id: number, folderId: number, type: TypeSelect) => ({id: id, folderId: folderId, type: type}),
+);

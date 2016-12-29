@@ -23,3 +23,8 @@
     background: #383838;
     color: #888888;
 }
+
+.LeftBar ul .active{
+    color: white;
+    background-color: #157EFB;
+}
