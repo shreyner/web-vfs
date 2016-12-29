@@ -9,6 +9,8 @@ import {addFolder, addFile} from "../../actions/index";
 import {IStore} from "../../model/IStore";
 import {ISelected} from "../../model/Selected";
 
+import * as styles from "./styles.less";
+
 export interface IMainContentDispatchToProps {
     addFolder?(name: string, parentFolder: number): void;
     addFile?(name: string, parentFolder: number): void;
@@ -47,7 +49,7 @@ export class MainContent extends React.Component<IMainContentProps, any> {
         };
 
         return (
-            <div className="MainContent">
+            <div className={styles.MainContent}>
                 <div className="content-head">
                     <div className="title">Пример</div>
                     <div className="description">3,5мб, 4 папки, 1 файл</div>

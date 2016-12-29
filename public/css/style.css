@@ -1,30 +1,30 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+/** {*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+/*}*/
 
-.App{
-    display: flex;
-    flex-flow: row;
-    flex-wrap: nowrap;
-    height: 100vh;
-}
+/*.App{*/
+    /*display: flex;*/
+    /*flex-flow: row;*/
+    /*flex-wrap: nowrap;*/
+    /*height: 100vh;*/
+/*}*/
 
-.MainContent {
-    flex: 1 1 100%;
-    padding: 30px 40px;
-    background: #ffffff;
-}
+/*.MainContent {*/
+    /*flex: 1 1 100%;*/
+    /*padding: 30px 40px;*/
+    /*background: #ffffff;*/
+/*}*/
 
-.LeftBar{
-    flex: 0 0 300px;
-    padding: 30px 0 0 15px;
-    background: #383838;
-    color: #888888;
-}
+/*.LeftBar{*/
+    /*flex: 0 0 300px;*/
+    /*padding: 30px 0 0 15px;*/
+    /*background: #383838;*/
+    /*color: #888888;*/
+/*}*/
 
-.LeftBar ul .active{
-    color: white;
-    background-color: #157EFB;
-}
+/*.LeftBar ul .active{*/
+    /*color: white;*/
+    /*background-color: #157EFB;*/
+/*}*/

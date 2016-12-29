@@ -11,6 +11,8 @@ import {TreeListView} from "../../components/TreeListView/TreeListView";
 import {FileModel} from "../../model/FileModel";
 import {ISelected, TypeSelect} from "../../model/Selected";
 
+import * as styles from "./styles.less";
+
 export interface ILeftBarDispatchToProps {
     selectAction?(id: number, folderId: number, type: TypeSelect): void;
 }
@@ -38,7 +40,7 @@ const mapStoreToProps = (store: IStore) => ({
 export class LeftBar extends React.Component<ILeftBarProps, any> {
     render() {
         return (
-            <div className="LeftBar">
+            <div className={styles.LeftBar}>
                 <TreeListView
                     folders={this.props.folders}
                     files={this.props.files}
