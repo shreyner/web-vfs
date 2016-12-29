@@ -7,3 +7,5 @@ export const ADD_FOLDER = "ADD_FOLDER";
 export const ADD_FILE = "ADD_FILE";
 
 export const SELECT_ITEM = "SELECT_ITEM";
+
+export const DELETE_ITEM = "DELETE_ITEM";

@@ -2,7 +2,7 @@
  * Created by Alexander on 27.12.2016.
  */
 import {createAction} from "redux-actions";
-import {ADD_FOLDER, ADD_FILE, SELECT_ITEM} from "../constants/index";
+import {ADD_FOLDER, ADD_FILE, SELECT_ITEM, DELETE_ITEM} from "../constants/index";
 import {FolderModel} from "../model/FolderModel";
 import {FileModel} from "../model/FileModel";
 import {ISelected, TypeSelect} from "../model/Selected";

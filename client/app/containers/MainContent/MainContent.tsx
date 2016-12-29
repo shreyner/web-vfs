@@ -18,9 +18,6 @@ export interface IMainContentStoreToProps {
 }
 
 export interface IMainContentProps extends IMainContentDispatchToProps, IMainContentStoreToProps {
-
-}
-export interface IMainContentStore {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => ({
@@ -34,13 +31,29 @@ const mapStoreToProps = (store: IStore) => ({
 @connect<IMainContentStoreToProps, IMainContentDispatchToProps, any>(mapStoreToProps, mapDispatchToProps)
 export class MainContent extends React.Component<IMainContentProps, any> {
     render() {
+        const createFolder = () => {
+
+            let resultPromt = prompt("Name folder:", "NewFolder");
+            if(resultPromt.trim().length > 0){
+                this.props.addFolder(resultPromt, this.props.selected.folderId);
+            }
+        };
+
+        const createFile = () => {
+            let resultPromt = prompt("Name file:", "newFile.txt");
+            if(resultPromt.trim().length > 0){
+                this.props.addFile(resultPromt, this.props.selected.folderId);
+            }
+        };
+
         return (
             <div className="MainContent">
                 <div className="content-head">
                     <div className="title">Пример</div>
                     <div className="description">3,5мб, 4 папки, 1 файл</div>
-                    <button onClick={() => this.props.addFolder("folder1", this.props.selected.folderId)}>Add Folder</button>
-                    <button onClick={() => this.props.addFile("secondFile.txt", this.props.selected.folderId)}>Add File</button>
+                    <button onClick={createFolder.bind(this)}>Add Folder</button>
+                    <button onClick={createFile.bind(this)}>Add File</button>
+                    <button>Delete</button>
                 </div>
             </div>
         );
