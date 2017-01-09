@@ -8,9 +8,6 @@ import {MainContent} from "../../containers/MainContent/MainContent";
 
 import * as styles from "./styles.less";
 
-console.log(styles);
-console.log(styles.app);
-
 export const App = () => (
     <div className={styles.app}>
         <LeftBar />

@@ -6,6 +6,7 @@ import {find} from "lodash";
 import {FolderModel} from "../../model/FolderModel";
 import {FileModel} from "../../model/FileModel";
 import {ISelected, TypeSelect} from "../../model/Selected";
+import * as styles from "./styles.less";
 
 
 export interface ITreeListViewProps {
@@ -24,19 +25,25 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
 
         return (
             <li key={folder.id}>
-                <span className={(selected.type === TypeSelect.Folder && selected.id === folder.id) ? "active" : null}
-                      onClick={()=>this.props.onSelect(folder.id, folder.id, TypeSelect.Folder)}>{folder.name}</span>
-                <ul>
-                    {folder.childrenFilder.map((itemIdFolder, indexFodler) => {
+                <a
+                    className={(selected.type === TypeSelect.Folder && selected.id === folder.id) ? styles.active : null}
+                    onClick={() => this.props.onSelect(folder.id, folder.id, TypeSelect.Folder)}>
+                        <span>{folder.name}</span>
+                </a>
+                <ul className={styles.navbar}>
+                    { folder.childrenFilder.map((itemIdFolder, indexFodler) => {
                         let nextFolder = find(folders, {id: itemIdFolder});
                         return this.renderFolderList(nextFolder, folders, files, selected);
                     })}
-                    {files.map((itemFile, indexFile) => {
+                    { files.map((itemFile, indexFile) => {
                         if (itemFile.parentFolder === folder.id) {
                             return (
                                 <li key={indexFile}>
-                                    <span className={(selected.type === TypeSelect.File && selected.id === itemFile.id) ? "active" : null}
-                                          onClick={()=>this.props.onSelect(itemFile.id, folder.id, TypeSelect.File)}>{itemFile.name}</span>
+                                    <a
+                                        className={(selected.type === TypeSelect.File && selected.id === itemFile.id) ? styles.active : null}
+                                        onClick={() => this.props.onSelect(itemFile.id, folder.id, TypeSelect.File)}>
+                                            <span>{itemFile.name}</span>
+                                    </a>
                                 </li>
                             );
                         }
@@ -49,7 +56,7 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
 
     render() {
         return (
-            <ul>
+            <ul className={styles.navbar}>
                 {this.renderFolderList(this.props.folders[0], this.props.folders, this.props.files, this.props.selected)}
             </ul>
         );
