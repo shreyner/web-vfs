@@ -34,16 +34,15 @@ const mapStoreToProps = (store: IStore) => ({
 export class MainContent extends React.Component<IMainContentProps, any> {
     render() {
         const createFolder = () => {
-
             let resultPromt = prompt("Name folder:", "NewFolder");
-            if(resultPromt.trim().length > 0){
+            if(resultPromt && resultPromt.trim().length > 0){
                 this.props.addFolder(resultPromt, this.props.selected.folderId);
             }
         };
 
         const createFile = () => {
             let resultPromt = prompt("Name file:", "newFile.txt");
-            if(resultPromt.trim().length > 0){
+            if(resultPromt && resultPromt.trim().length > 0){
                 this.props.addFile(resultPromt, this.props.selected.folderId);
             }
         };

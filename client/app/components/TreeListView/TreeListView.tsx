@@ -25,6 +25,9 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
                              files: FileModel[],
                              selected: ISelected): JSX.Element {
 
+        let childrenFolder: FolderModel[] = folders.filter((folderItem) => folder.id === folderItem.parentFolder);
+        let childrenFile: FileModel[] = files.filter((fileItem) => fileItem.parentFolder === folder.id);
+
         let activeItem: boolean = selected.type === TypeSelect.Folder && selected.id === folder.id;
 
         let styleFolderLink: string = styles("link", {
@@ -32,10 +35,10 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
         });
 
         let styleFolderLinkIcon: string = styles({
-            "iconFolderClose": folder.childrenFolder.length === 0 && !activeItem,
-            "iconFolderCloseActive": folder.childrenFolder.length === 0 && activeItem,
-            "iconFolderOpen": folder.childrenFolder.length !== 0 && !activeItem,
-            "iconFolderOpenActive": folder.childrenFolder.length !== 0 && activeItem,
+            "iconFolderClose": (childrenFolder.length === 0 && childrenFile.length === 0) && !activeItem,
+            "iconFolderCloseActive": (childrenFolder.length === 0 && childrenFile.length === 0) && activeItem,
+            "iconFolderOpen": (childrenFolder.length !== 0 || childrenFile.length !== 0) && !activeItem,
+            "iconFolderOpenActive": (childrenFolder.length !== 0 || childrenFile.length !== 0) && activeItem,
         });
 
         let styleFileLink = (itemFile: FileModel) => styles("link", {
@@ -54,14 +57,12 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
                     onClick={() => this.props.onSelect(folder.id, folder.id, TypeSelect.Folder)}>
                     <span className={styleFolderLinkIcon}/> <span>{folder.name}</span>
                 </a>
+
                 <ul className={style.treeList}>
-                    { folder.childrenFolder.map((itemIdFolder) => {
-                        let nextFolder = find(folders, {id: itemIdFolder});
-                        return this.renderFolderList(nextFolder, folders, files, selected);
+                    { childrenFolder.map((itemIdFolder) => {
+                        return this.renderFolderList(itemIdFolder, folders, files, selected);
                     })}
-                    { files.map((itemFile, indexFile) => {
-                        if (itemFile.parentFolder === folder.id) {
-                            return (
+                    { childrenFile.map((itemFile, indexFile) => (
                                 <li key={indexFile} className={style.link}>
                                     <a
                                         className={styleFileLink(itemFile)}
@@ -69,10 +70,7 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
                                         <span className={styleFileLinkIcon(itemFile)}/><span>{itemFile.name}</span>
                                     </a>
                                 </li>
-                            );
-                        }
-                        return null;
-                    })}
+                    ))}
                 </ul>
             </li>
         );
@@ -81,7 +79,14 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
     render() {
         return (
             <ul className={style.treeList}>
-                {this.renderFolderList(this.props.folders[0], this.props.folders, this.props.files, this.props.selected)}
+                {
+                    this.renderFolderList(
+                        this.props.folders[0],
+                        this.props.folders,
+                        this.props.files,
+                        this.props.selected
+                    )
+                }
             </ul>
         );
     }

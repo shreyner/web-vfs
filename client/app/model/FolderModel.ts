@@ -10,11 +10,9 @@ export class FolderModel {
 
     public name: string;
 
-    public childrenFolder: number[];
+    // public childrenFolder: number[];
 
     public parentFolder?: number;
-
-    public files: number[];
 
     constructor(source?: FolderModel) {
         if (source) {

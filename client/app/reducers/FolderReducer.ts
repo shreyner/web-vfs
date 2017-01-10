@@ -11,7 +11,7 @@ import {FolderModel} from "../model/FolderModel";
 let idFolder = 1;
 
 const initialStoreFolder: FolderModel[] = [
-    new FolderModel({id: 0, name: "Root", childrenFolder: [], files: []}),
+    new FolderModel({id: 0, name: "Root"}),
 ];
 
 export const folderReducer = handleActions<FolderModel[]>({
@@ -20,13 +20,6 @@ export const folderReducer = handleActions<FolderModel[]>({
         let newFolder = action.payload;
 
         newFolder.id = idFolder++;
-
-        store.forEach(itemFolder => {
-            if (itemFolder.id === action.payload.parentFolder) {
-                itemFolder.childrenFolder.push(newFolder.id);
-            }
-        });
-
         newStore.push(newFolder);
         return newStore;
     },
