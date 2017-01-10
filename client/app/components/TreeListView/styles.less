@@ -1,8 +1,74 @@
-.navbar {
+.treeList {
   list-style: none;
-  font-size: 18px;
+  font-size: 15px;
+  margin: 0;
+  padding-left: 30px;
 }
 
-.active {
-  color: yellow;
+.item {
+}
+
+.link{
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+
+.link span{
+  vertical-align: middle;
+}
+
+.active{
+  color: #ffffff;
+  background-color: #157EFB;
+}
+
+.iconFolderOpen{
+  display: inline-block;
+  height: 20px;
+  width: 26px;
+  background: url("/public/img/icons.png") -1px 39px;
+}
+
+.link:hover .iconFolderOpen {
+  background: url("/public/img/icons.png") -53px 39px;
+}
+
+.iconFolderOpenActive{
+  display: inline-block;
+  height: 20px;
+  width: 26px;
+  background: url("/public/img/icons.png") -27px 39px;
+}
+
+.iconFolderClose{
+  display: inline-block;
+  height: 20px;
+  width: 23px;
+  background: url("/public/img/icons.png") -1px 58px;
+}
+
+.link:hover .iconFolderClose{
+  background: url("/public/img/icons.png") -47px 58px;
+}
+
+.iconFolderCloseActive{
+  display: inline-block;
+  height: 20px;
+  width: 23px;
+  background: url("/public/img/icons.png") -24px 58px;
+}
+
+.iconFile{
+  display: inline-block;
+  height: 20px;
+  width: 14px;
+  background: url("/public/img/icons.png") -1px 20px;
+}
+
+.iconFileActive{
+  display: inline-block;
+  height: 20px;
+  width: 14px;
+  background: url("/public/img/icons.png") -15px 20px;
 }

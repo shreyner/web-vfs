@@ -11,7 +11,7 @@ export const addFolder = createAction<FolderModel, string, number>(
     ADD_FOLDER,
     (name: string, folderParent: number) => (new FolderModel({
         name: name,
-        childrenFilder: [],
+        childrenFolder: [],
         parentFolder: folderParent,
         files: [],
     })),

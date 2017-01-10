@@ -10,7 +10,7 @@ export class FolderModel {
 
     public name: string;
 
-    public childrenFilder: number[];
+    public childrenFolder: number[];
 
     public parentFolder?: number;
 

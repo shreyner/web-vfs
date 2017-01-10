@@ -35,6 +35,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "@types/classnames": "0.0.32",
     "@types/lodash": "^4.14.44",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.19",
@@ -42,6 +43,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-actions": "^1.2.0",
     "@types/redux-devtools": "^3.0.36",
+    "classnames": "^2.2.5",
     "lodash": "^4.17.3",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
