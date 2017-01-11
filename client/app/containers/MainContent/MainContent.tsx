@@ -4,21 +4,22 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
-import {addFolder, addFile, deleteItem} from "../../actions/index";
+import {addFolder, addFile, deleteItem, TAddFolder, TAddFile, TDeleteItem} from "../../actions/index";
 import {IStore} from "../../model/IStore";
-import {ISelected, TypeSelect} from "../../model/Selected";
 import * as styles from "./styles.less";
 
 import { WorkPanel } from "../../components/WorkPanel/WorkPanel";
 import { EditFile } from "../../components/EditFile/EditFile";
+import {FileModel} from "../../model/FileModel";
+import {FolderModel} from "../../model/FolderModel";
 
 export interface IMainContentDispatchToProps {
-    addFolder?(name: string, parentFolder: number): void;
-    addFile?(name: string, parentFolder: number): void;
-    deleteItem?(id: number, typeItem: TypeSelect): void;
+    addFolder?: TAddFolder;
+    addFile?: TAddFile;
+    deleteItem?: TDeleteItem;
 }
 export interface IMainContentStoreToProps {
-    selected?: ISelected;
+    selected?: FileModel | FolderModel;
 }
 
 export interface IMainContentProps extends IMainContentDispatchToProps, IMainContentStoreToProps {
@@ -39,31 +40,32 @@ export class MainContent extends React.Component<IMainContentProps, any> {
         const createFolder = () => {
             let resultPromt = prompt("Name folder:", "NewFolder");
             if (resultPromt && resultPromt.trim().length > 0) {
-                this.props.addFolder(resultPromt, this.props.selected.folderId);
+                this.props.addFolder(resultPromt, this.props.selected.id);
             }
         };
 
         const createFile = () => {
             let resultPromt = prompt("Name file:", "newFile.txt");
             if (resultPromt && resultPromt.trim().length > 0) {
-                this.props.addFile(resultPromt, this.props.selected.folderId);
+                this.props.addFile(resultPromt, this.props.selected.id);
             }
         };
 
         const deleteItem = () => {
-            this.props.deleteItem(this.props.selected.id, this.props.selected.type);
+            this.props.deleteItem(this.props.selected);
         };
 
         let content: React.ReactNode;
-        if (this.props.selected.type === TypeSelect.Folder) {
+        if (this.props.selected instanceof FolderModel) {
             content = <WorkPanel
                 onCreateFolder={createFolder.bind(this)}
                 onCreateFile={createFile.bind(this)}
                 onDeleteItem={deleteItem.bind(this)}
+                selected={this.props.selected}
             />
         }
 
-        if (this.props.selected.type === TypeSelect.File) {
+        if (this.props.selected instanceof FileModel) {
             content = (
                 <EditFile onDeleteItem={deleteItem.bind(this)} />
             )

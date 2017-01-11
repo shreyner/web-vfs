@@ -1,13 +1,11 @@
 /**
  * Created by Alexander on 28.12.2016.
  */
-
 import {Action, handleActions} from "redux-actions";
-import {clone, findIndex} from "lodash";
-
+import {clone} from "lodash";
 import {ADD_FILE, DELETE_ITEM} from "../constants/index";
 import {FileModel} from "../model/FileModel";
-import {TypeSelect} from "../model/Selected";
+import {FolderModel} from "../model/FolderModel";
 
 let idFile = 1;
 
@@ -31,13 +29,13 @@ export const filesReducer = handleActions<FileModel[]>({
 
         return newStore;
     },
-    [DELETE_ITEM]: (store: FileModel[], action: Action<{id: number, typeItem: TypeSelect}>) => {
-      if(action.payload.typeItem === TypeSelect.File){
-          let newStore = clone(store);
-          newStore.splice(findIndex(store, {id: action.payload.id}),1);
-          return newStore;
-      } else {
-          return store;
-      }
+    [DELETE_ITEM]: (store: FileModel[], action: Action<FileModel | FolderModel>) => {
+        if (action.payload instanceof FileModel) {
+            let newStore = clone(store);
+            newStore.splice(store.indexOf(action.payload), 1);
+            return newStore;
+        } else {
+            return store;
+        }
     },
 }, initialStoreFolder);

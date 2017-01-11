@@ -3,8 +3,11 @@
  */
 import * as React from "react";
 import * as styles from "./style.less";
+import {FileModel} from "../../model/FileModel";
+import {FolderModel} from "../../model/FolderModel";
 
 export interface IWorkPanelProps{
+    selected: FileModel | FolderModel;
     onCreateFile: Function;
     onCreateFolder: Function;
     onDeleteItem: Function;
@@ -20,7 +23,7 @@ export class WorkPanel extends React.Component<IWorkPanelProps, IWorkPanelState>
     render(){
         return(
             <div className="content-head">
-                <div className="title">Пример</div>
+                <h1 className="title">{this.props.selected.name}</h1>
                 <div className="description">3,5мб, 4 папки, 1 файл</div>
                 <button onClick={() => this.props.onCreateFolder()}>Add Folder</button>
                 <button onClick={() => this.props.onCreateFile()}>Add File</button>

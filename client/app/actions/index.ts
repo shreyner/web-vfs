@@ -5,7 +5,12 @@ import {createAction} from "redux-actions";
 import {ADD_FOLDER, ADD_FILE, SELECT_ITEM, DELETE_ITEM} from "../constants/index";
 import {FolderModel} from "../model/FolderModel";
 import {FileModel} from "../model/FileModel";
-import {ISelected, TypeSelect} from "../model/Selected";
+
+
+export type TAddFolder = (name: string, folderParent: number) => void;
+export type TAddFile = (name: string, parendFolder: number) => void;
+export type TSelectItem = (item: FileModel | FolderModel) => void;
+export type TDeleteItem = (item: FileModel | FolderModel) => void;
 
 export const addFolder = createAction<FolderModel, string, number>(
     ADD_FOLDER,
@@ -24,12 +29,12 @@ export const addFile = createAction<FileModel, string, number>(
     })),
 );
 
-export const selectItem = createAction<ISelected, number, number, TypeSelect>(
+export const selectItem = createAction<FileModel | FolderModel, FileModel | FolderModel>(
     SELECT_ITEM,
-    (id: number, folderId: number, type: TypeSelect) => ({id: id, folderId: folderId, type: type}),
+    (item: FileModel | FolderModel) => (item),
 );
 
-export const deleteItem = createAction<any, number, TypeSelect>(
+export const deleteItem = createAction<FileModel | FolderModel, FileModel | FolderModel >(
     DELETE_ITEM,
-    (id: number, type: TypeSelect) => ({id: id, typeItem: type}),
+    (item: FileModel | FolderModel) => (item),
 );

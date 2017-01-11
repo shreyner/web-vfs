@@ -4,27 +4,25 @@
 import * as React from "react";
 import {bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
-import {selectItem} from "../../actions/index";
+import {selectItem, TSelectItem} from "../../actions/index";
 import {IStore} from "../../model/IStore";
 import {FolderModel} from "../../model/FolderModel";
 import {TreeListView} from "../../components/TreeListView/TreeListView";
 import {FileModel} from "../../model/FileModel";
-import {ISelected, TypeSelect} from "../../model/Selected";
+// import {ISelected, TypeSelect} from "../../model/Selected";
 
 import * as styles from "./styles.less";
 
 export interface ILeftBarDispatchToProps {
-    selectAction?(id: number, folderId: number, type: TypeSelect): void;
+    selectAction?: TSelectItem;
 }
 export interface ILeftBarStoreToProps {
     folders?: FolderModel[];
     files?: FileModel[];
-    selected?: ISelected;
+    selected?: FolderModel | FileModel;
 }
 
 export interface ILeftBarProps extends ILeftBarStoreToProps, ILeftBarDispatchToProps {
-}
-export interface ILeftBarState {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({

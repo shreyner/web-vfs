@@ -4,10 +4,9 @@
 
 import {FileModel} from "./FileModel";
 import {FolderModel} from "./FolderModel";
-import {ISelected} from "./Selected";
 
 export interface IStore {
     folders: FolderModel[];
     files: FileModel[];
-    selected: ISelected;
+    selected: FolderModel | FileModel;
 }

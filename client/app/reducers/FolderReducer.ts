@@ -8,6 +8,7 @@ import {Action, handleActions} from "redux-actions";
 import {ADD_FOLDER, DELETE_ITEM} from "../constants/index";
 import {FolderModel} from "../model/FolderModel";
 import {TypeSelect} from "../model/Selected";
+import {FileModel} from "../model/FileModel";
 
 let idFolder = 1;
 
@@ -24,10 +25,10 @@ export const folderReducer = handleActions<FolderModel[]>({
         newStore.push(newFolder);
         return newStore;
     },
-    [DELETE_ITEM]: (store: FolderModel[], action: Action<{id: number, typeItem: TypeSelect}>) => {
-        if(action.payload.typeItem === TypeSelect.Folder){
+    [DELETE_ITEM]: (store: FolderModel[], action: Action<FileModel | FolderModel>) => {
+        if(action.payload instanceof FolderModel){
             let newStore = clone(store);
-            let indexFolder = findIndex(store, {id: action.payload.id});
+            let indexFolder = store.indexOf(action.payload);
 
             if(!isUndefined(store[indexFolder].parentFolder)){
                 newStore.splice(indexFolder,1);
