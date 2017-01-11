@@ -4,14 +4,18 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
-import {addFolder, addFile} from "../../actions/index";
+import {addFolder, addFile, deleteItem} from "../../actions/index";
 import {IStore} from "../../model/IStore";
 import {ISelected, TypeSelect} from "../../model/Selected";
 import * as styles from "./styles.less";
 
+import { WorkPanel } from "../../components/WorkPanel/WorkPanel";
+import { EditFile } from "../../components/EditFile/EditFile";
+
 export interface IMainContentDispatchToProps {
     addFolder?(name: string, parentFolder: number): void;
     addFile?(name: string, parentFolder: number): void;
+    deleteItem?(id: number, typeItem: TypeSelect): void;
 }
 export interface IMainContentStoreToProps {
     selected?: ISelected;
@@ -22,7 +26,8 @@ export interface IMainContentProps extends IMainContentDispatchToProps, IMainCon
 
 const mapDispatchToProps = (dispatch: Dispatch<void>) => ({
     addFolder: bindActionCreators(addFolder, dispatch),
-    addFile: bindActionCreators(addFile, dispatch)
+    addFile: bindActionCreators(addFile, dispatch),
+    deleteItem: bindActionCreators(deleteItem, dispatch),
 });
 const mapStoreToProps = (store: IStore) => ({
     selected: store.selected,
@@ -45,25 +50,22 @@ export class MainContent extends React.Component<IMainContentProps, any> {
             }
         };
 
-        let content: React.ReactNode;
+        const deleteItem = () => {
+            this.props.deleteItem(this.props.selected.id, this.props.selected.type);
+        };
 
+        let content: React.ReactNode;
         if (this.props.selected.type === TypeSelect.Folder) {
-            content = (
-                <div className="content-head">
-                    <div className="title">Пример</div>
-                    <div className="description">3,5мб, 4 папки, 1 файл</div>
-                    <button onClick={createFolder.bind(this)}>Add Folder</button>
-                    <button onClick={createFile.bind(this)}>Add File</button>
-                    <button>Delete</button>
-                </div>
-            )
+            content = <WorkPanel
+                onCreateFolder={createFolder.bind(this)}
+                onCreateFile={createFile.bind(this)}
+                onDeleteItem={deleteItem.bind(this)}
+            />
         }
 
         if (this.props.selected.type === TypeSelect.File) {
             content = (
-                <div>
-                    <h1>Select File</h1>
-                </div>
+                <EditFile onDeleteItem={deleteItem.bind(this)} />
             )
         }
 
