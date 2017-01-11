@@ -28,3 +28,8 @@ export const selectItem = createAction<ISelected, number, number, TypeSelect>(
     SELECT_ITEM,
     (id: number, folderId: number, type: TypeSelect) => ({id: id, folderId: folderId, type: type}),
 );
+
+export const deleteItem = createAction<any, number, TypeSelect>(
+    DELETE_ITEM,
+    (id: number, type: TypeSelect) => ({id: id, typeItem: type}),
+);
