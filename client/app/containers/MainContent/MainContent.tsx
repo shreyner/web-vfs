@@ -4,7 +4,10 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
-import {addFolder, addFile, deleteItem, TAddFolder, TAddFile, TDeleteItem} from "../../actions/index";
+import {
+    addFolder, addFile, deleteItem, TAddFolder, TAddFile, TDeleteItem, saveChangeFile,
+    TSaveChangeFile
+} from "../../actions/index";
 import {IStore} from "../../model/IStore";
 import * as styles from "./styles.less";
 
@@ -17,6 +20,7 @@ export interface IMainContentDispatchToProps {
     addFolder?: TAddFolder;
     addFile?: TAddFile;
     deleteItem?: TDeleteItem;
+    saveFileChange?: TSaveChangeFile;
 }
 export interface IMainContentStoreToProps {
     selected?: FileModel | FolderModel;
@@ -29,6 +33,7 @@ const mapDispatchToProps = (dispatch: Dispatch<void>) => ({
     addFolder: bindActionCreators(addFolder, dispatch),
     addFile: bindActionCreators(addFile, dispatch),
     deleteItem: bindActionCreators(deleteItem, dispatch),
+    saveFileChange: bindActionCreators(saveChangeFile, dispatch),
 });
 const mapStoreToProps = (store: IStore) => ({
     selected: store.selected,
@@ -55,6 +60,12 @@ export class MainContent extends React.Component<IMainContentProps, any> {
             this.props.deleteItem(this.props.selected);
         };
 
+        let handleSaveFile = (name: string, body: string) => {
+            if (this.props.selected instanceof FileModel){
+                this.props.saveFileChange(this.props.selected, name, body);
+            }
+        };
+
         let content: React.ReactNode;
         if (this.props.selected instanceof FolderModel) {
             content = <WorkPanel
@@ -67,7 +78,11 @@ export class MainContent extends React.Component<IMainContentProps, any> {
 
         if (this.props.selected instanceof FileModel) {
             content = (
-                <EditFile onDeleteItem={deleteItem.bind(this)} />
+                <EditFile
+                    file={this.props.selected}
+                    onDeleteItem={deleteItem.bind(this)}
+                    onSaveFile={handleSaveFile.bind(this)}
+                />
             )
         }
 

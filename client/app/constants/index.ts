@@ -9,3 +9,5 @@ export const ADD_FILE = "ADD_FILE";
 export const SELECT_ITEM = "SELECT_ITEM";
 
 export const DELETE_ITEM = "DELETE_ITEM";
+
+export const SAVE_FILE = "SAVE_FILE";

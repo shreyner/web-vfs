@@ -72,7 +72,7 @@ export class TreeListView extends React.Component<ITreeListViewProps, any> {
                                     <a
                                         className={styleFileLink(itemFile)}
                                         onClick={() => this.props.onSelect(itemFile)}
-                                        style={{paddingLeft: paddingLeftOnOrder}}
+                                        style={{paddingLeft: paddingLeftOnOrder + 30}}
                                     >
                                         <span className={styleFileLinkIcon(itemFile)}/><span>{itemFile.name}</span>
                                     </a>

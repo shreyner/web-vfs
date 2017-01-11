@@ -3,7 +3,7 @@
  */
 import {Action, handleActions} from "redux-actions";
 import {clone} from "lodash";
-import {ADD_FILE, DELETE_ITEM} from "../constants/index";
+import {ADD_FILE, DELETE_ITEM, SAVE_FILE} from "../constants/index";
 import {FileModel} from "../model/FileModel";
 import {FolderModel} from "../model/FolderModel";
 
@@ -38,4 +38,13 @@ export const filesReducer = handleActions<FileModel[]>({
             return store;
         }
     },
+    [SAVE_FILE]: (store: FileModel[], action: Action<{fileItem: FileModel, name: string, body: string}>) => {
+        let newStore = clone(store);
+        let indexFile = store.indexOf(action.payload.fileItem);
+
+        newStore[indexFile].name = action.payload.name;
+        newStore[indexFile].body = action.payload.body;
+
+        return newStore;
+    }
 }, initialStoreFolder);
