@@ -4,11 +4,9 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators, Dispatch} from "redux";
-
 import {addFolder, addFile} from "../../actions/index";
 import {IStore} from "../../model/IStore";
-import {ISelected} from "../../model/Selected";
-
+import {ISelected, TypeSelect} from "../../model/Selected";
 import * as styles from "./styles.less";
 
 export interface IMainContentDispatchToProps {
@@ -35,20 +33,22 @@ export class MainContent extends React.Component<IMainContentProps, any> {
     render() {
         const createFolder = () => {
             let resultPromt = prompt("Name folder:", "NewFolder");
-            if(resultPromt && resultPromt.trim().length > 0){
+            if (resultPromt && resultPromt.trim().length > 0) {
                 this.props.addFolder(resultPromt, this.props.selected.folderId);
             }
         };
 
         const createFile = () => {
             let resultPromt = prompt("Name file:", "newFile.txt");
-            if(resultPromt && resultPromt.trim().length > 0){
+            if (resultPromt && resultPromt.trim().length > 0) {
                 this.props.addFile(resultPromt, this.props.selected.folderId);
             }
         };
 
-        return (
-            <div className={styles.MainContent}>
+        let content: React.ReactNode;
+
+        if (this.props.selected.type === TypeSelect.Folder) {
+            content = (
                 <div className="content-head">
                     <div className="title">Пример</div>
                     <div className="description">3,5мб, 4 папки, 1 файл</div>
@@ -56,6 +56,20 @@ export class MainContent extends React.Component<IMainContentProps, any> {
                     <button onClick={createFile.bind(this)}>Add File</button>
                     <button>Delete</button>
                 </div>
+            )
+        }
+
+        if (this.props.selected.type === TypeSelect.File) {
+            content = (
+                <div>
+                    <h1>Select File</h1>
+                </div>
+            )
+        }
+
+        return (
+            <div className={styles.MainContent}>
+                {content}
             </div>
         );
     }
